@@ -28,7 +28,7 @@ class ObjectCell: UITableViewCell {
 // MARK: - VirtualObjectSelectionViewControllerDelegate
 
 /// A protocol for reporting which objects have been selected.
-protocol VirtualObjectSelectionViewControllerDelegate: class {
+protocol VirtualObjectSelectionViewControllerDelegate: AnyObject {
     func virtualObjectSelectionViewController(_ selectionViewController: VirtualObjectSelectionViewController, didSelectObject: VirtualObject)
     func virtualObjectSelectionViewController(_ selectionViewController: VirtualObjectSelectionViewController, didDeselectObject: VirtualObject)
 }

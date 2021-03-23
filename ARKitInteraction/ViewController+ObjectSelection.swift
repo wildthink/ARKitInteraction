@@ -109,6 +109,30 @@ extension ViewController: VirtualObjectSelectionViewControllerDelegate {
         displayObjectLoadingUI()
     }
     
+    // jmj
+    func highlight(node: SCNNode) {
+        
+        let material = node.geometry!.firstMaterial!
+
+        // highlight it
+        SCNTransaction.begin()
+        SCNTransaction.animationDuration = 0.5
+
+        // on completion - unhighlight
+        SCNTransaction.completionBlock = {
+            SCNTransaction.begin()
+            SCNTransaction.animationDuration = 0.5
+
+            material.emission.contents = UIColor.black
+
+            SCNTransaction.commit()
+        }
+
+        material.emission.contents = UIColor.red
+
+        SCNTransaction.commit()
+    }
+    
     func virtualObjectSelectionViewController(_: VirtualObjectSelectionViewController, didDeselectObject object: VirtualObject) {
         guard let objectIndex = virtualObjectLoader.loadedObjects.firstIndex(of: object) else {
             fatalError("Programmer error: Failed to lookup virtual object in scene.")
