@@ -72,6 +72,8 @@ extension ViewController: VirtualObjectSelectionViewControllerDelegate {
         
         // If the virtual object is not yet in the scene, add it.
         if virtualObject.parent == nil {
+            // jmj
+//            virtualObject.selected = true
             self.sceneView.scene.rootNode.addChildNode(virtualObject)
             virtualObject.shouldUpdateAnchor = true
         }
@@ -93,11 +95,15 @@ extension ViewController: VirtualObjectSelectionViewControllerDelegate {
     func virtualObjectSelectionViewController(_: VirtualObjectSelectionViewController, didSelectObject object: VirtualObject) {
         virtualObjectLoader.loadVirtualObject(object, loadedHandler: { [unowned self] loadedObject in
             
+            print ("Loaded", loadedObject.className, loadedObject.modelName)
+//            self.annotate(node: loadedObject) // jmj
+
             do {
                 let scene = try SCNScene(url: object.referenceURL, options: nil)
                 self.sceneView.prepare([scene], completionHandler: { _ in
                     DispatchQueue.main.async {
                         self.hideObjectLoadingUI()
+//                        self.annotate(node: loadedObject) // jmj
                         self.placeVirtualObject(loadedObject)
                     }
                 })
@@ -110,9 +116,43 @@ extension ViewController: VirtualObjectSelectionViewControllerDelegate {
     }
     
     // jmj
+    func annotate(node: VirtualObject) {
+//        let mesh = MeshResource.generateText(
+//                    "RealityKit",
+//                    extrusionDepth: 0.1,
+//                    font: .systemFont(ofSize: 2),
+//                    containerFrame: .zero,
+//                    alignment: .left,
+//                    lineBreakMode: .byTruncatingTail)
+//
+//                let material = SimpleMaterial(color: .red, isMetallic: false)
+//                let entity = ModelEntity(mesh: mesh, materials: [material])
+//                entity.scale = SIMD3<Float>(0.03, 0.03, 0.1)
+//
+        let radius = CGFloat(node.boundingSphere.radius)
+        let entity = SCNNode.tube(innerRadius: radius, outerRadius: radius + 0.2, height: 0.01, content: UIColor.red.withAlphaComponent(0.5))
+//        entity.position = SCNVector3Make(1, 1, 1);
+//        node.addChildNode(entity)
+//        node.insertChildNode(entity, at: 0)
+//        entity.setPosition(SIMD3<Float>(0, 0.05, 0), relativeTo: node)
+    }
+    
+    func material(color: UIColor) -> SCNMaterial {
+        let material = SCNMaterial()
+        material.diffuse.contents = color
+        return material
+    }
+    
+    func cube(edge: CGFloat = 10, color: UIColor = .red) -> SCNNode {
+        let cubeGeometry = SCNBox(width: edge, height: edge, length: edge, chamferRadius: 0.0)
+        cubeGeometry.materials = [material(color: color)]
+        let cubeNode = SCNNode(geometry: cubeGeometry)
+        return cubeNode
+    }
+    
     func highlight(node: SCNNode) {
         
-        let material = node.geometry!.firstMaterial!
+        let material = SCNMaterial() // node.geometry!.firstMaterial!
 
         // highlight it
         SCNTransaction.begin()

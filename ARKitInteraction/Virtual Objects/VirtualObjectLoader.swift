@@ -25,6 +25,8 @@ class VirtualObjectLoader {
     */
     func loadVirtualObject(_ object: VirtualObject, loadedHandler: @escaping (VirtualObject) -> Void) {
         isLoading = true
+        object.name = object.modelName // jmj
+//        object.selected = true
         loadedObjects.append(object)
         
         // Load the content into the reference node.

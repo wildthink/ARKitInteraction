@@ -11,6 +11,23 @@ import ARKit
 
 class VirtualObject: SCNReferenceNode {
     
+    // jmj
+    var selection_mark: SCNNode?
+    
+    var selected: Bool {
+        get { selection_mark != nil }
+        set {
+            if newValue {
+                let radius = CGFloat(self.boundingSphere.radius)
+                let ring = SCNNode.tube(innerRadius: radius, outerRadius: radius + 0.01, height: 0.02, content: UIColor.red.withAlphaComponent(0.8))
+                selection_mark = ring
+                self.addChildNode(ring)
+            } else {
+                selection_mark?.removeFromParentNode()
+                selection_mark = nil
+            }
+        }
+    }
     /// The model name derived from the `referenceURL`.
     var modelName: String {
         return referenceURL.lastPathComponent.replacingOccurrences(of: ".scn", with: "")

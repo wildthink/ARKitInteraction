@@ -128,10 +128,15 @@ class VirtualObjectInteraction: NSObject, UIGestureRecognizerDelegate {
     func didTap(_ gesture: UITapGestureRecognizer) {
         let touchLocation = gesture.location(in: sceneView)
         
+        print (#function, touchLocation)
+
+        selectedObject?.selected = false
+        
         if let tappedObject = sceneView.virtualObject(at: touchLocation) {
             
             // If an object exists at the tap location, select it.
             selectedObject = tappedObject
+            selectedObject?.selected = true
         } else if let object = selectedObject {
             
             // Otherwise, move the selected object to its new position at the tap location.
