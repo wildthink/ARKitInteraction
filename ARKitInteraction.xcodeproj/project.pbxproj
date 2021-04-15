@@ -21,6 +21,8 @@
 		9679BE6F260B968F009F0E89 /* ARExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9679BE6E260B968F009F0E89 /* ARExtensions.swift */; };
 		9679BE72260BD182009F0E89 /* ARVideoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9679BE71260BD182009F0E89 /* ARVideoKit */; };
 		9679BE95260CE9DF009F0E89 /* ShapeNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9679BE94260CE9DF009F0E89 /* ShapeNodes.swift */; };
+		96EDA36326289B0000BE1B5A /* switchboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96EDA36226289B0000BE1B5A /* switchboard.jpg */; };
+		96EDA3662628B75300BE1B5A /* Euclid in Frameworks */ = {isa = PBXBuildFile; productRef = 96EDA3652628B75300BE1B5A /* Euclid */; };
 		C41366B91EB80DD400EC054A /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41366B81EB80DD400EC054A /* StatusViewController.swift */; };
 		C42A71BD1E9C0AF200944367 /* FocusSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42A71BC1E9C0AF200944367 /* FocusSquare.swift */; };
 		C46356671EF9CC500080C8D9 /* VirtualObjectARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46356661EF9CC480080C8D9 /* VirtualObjectARView.swift */; };
@@ -50,6 +52,7 @@
 		39D8DC1A1E8ADAE600386B05 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9679BE6E260B968F009F0E89 /* ARExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARExtensions.swift; sourceTree = "<group>"; };
 		9679BE94260CE9DF009F0E89 /* ShapeNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeNodes.swift; sourceTree = "<group>"; };
+		96EDA36226289B0000BE1B5A /* switchboard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = switchboard.jpg; sourceTree = "<group>"; };
 		C41366B81EB80DD400EC054A /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		C42A71BC1E9C0AF200944367 /* FocusSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusSquare.swift; sourceTree = "<group>"; };
 		C46356651EF9CB1A0080C8D9 /* VirtualObjectLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualObjectLoader.swift; sourceTree = "<group>"; };
@@ -67,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96EDA3662628B75300BE1B5A /* Euclid in Frameworks */,
 				9679BE72260BD182009F0E89 /* ARVideoKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,6 +107,7 @@
 		1488324C1EFC3ED00043E0AB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				96EDA36226289B0000BE1B5A /* switchboard.jpg */,
 				3929C49E1E89EE4400E00B60 /* Models.scnassets */,
 				3929C4921E89EC2C00E00B60 /* Assets.xcassets */,
 				3929C4971E89EC2C00E00B60 /* Info.plist */,
@@ -197,6 +202,7 @@
 			name = ARKitInteraction;
 			packageProductDependencies = (
 				9679BE71260BD182009F0E89 /* ARVideoKit */,
+				96EDA3652628B75300BE1B5A /* Euclid */,
 			);
 			productName = ARKitInteraction;
 			productReference = 3929C4881E89EC2C00E00B60 /* ARKitInteraction.app */;
@@ -231,6 +237,7 @@
 			mainGroup = 3929C47F1E89EC2C00E00B60;
 			packageReferences = (
 				9679BE70260BD182009F0E89 /* XCRemoteSwiftPackageReference "ARVideoKit" */,
+				96EDA3642628B75300BE1B5A /* XCRemoteSwiftPackageReference "Euclid" */,
 			);
 			productRefGroup = 3929C4891E89EC2C00E00B60 /* Products */;
 			projectDirPath = "";
@@ -250,6 +257,7 @@
 				39D8DC1B1E8ADAE600386B05 /* LaunchScreen.storyboard in Resources */,
 				3929C4931E89EC2C00E00B60 /* Assets.xcassets in Resources */,
 				3929C4911E89EC2C00E00B60 /* Main.storyboard in Resources */,
+				96EDA36326289B0000BE1B5A /* switchboard.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +502,14 @@
 				kind = branch;
 			};
 		};
+		96EDA3642628B75300BE1B5A /* XCRemoteSwiftPackageReference "Euclid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nicklockwood/Euclid.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -501,6 +517,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9679BE70260BD182009F0E89 /* XCRemoteSwiftPackageReference "ARVideoKit" */;
 			productName = ARVideoKit;
+		};
+		96EDA3652628B75300BE1B5A /* Euclid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96EDA3642628B75300BE1B5A /* XCRemoteSwiftPackageReference "Euclid" */;
+			productName = Euclid;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

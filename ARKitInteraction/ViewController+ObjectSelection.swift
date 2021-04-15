@@ -93,10 +93,19 @@ extension ViewController: VirtualObjectSelectionViewControllerDelegate {
     // MARK: - VirtualObjectSelectionViewControllerDelegate
     // - Tag: PlaceVirtualContent
     func virtualObjectSelectionViewController(_: VirtualObjectSelectionViewController, didSelectObject object: VirtualObject) {
+        
         virtualObjectLoader.loadVirtualObject(object, loadedHandler: { [unowned self] loadedObject in
             
             print ("Loaded", loadedObject.className, loadedObject.modelName)
 //            self.annotate(node: loadedObject) // jmj
+            // jmj
+            if loadedObject.referenceNode == nil {
+                DispatchQueue.main.async {
+                    self.hideObjectLoadingUI()
+                    self.placeVirtualObject(loadedObject)
+                }
+                return
+            }
 
             do {
                 let scene = try SCNScene(url: object.referenceURL, options: nil)

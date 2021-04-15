@@ -9,8 +9,51 @@ import Foundation
 import SceneKit
 import ARKit
 
-class VirtualObject: SCNReferenceNode {
+class VirtualObject: SCNNode {
     
+    var referenceNode: SCNReferenceNode? {
+        childNodes.first { $0 is SCNReferenceNode } as? SCNReferenceNode
+    }
+
+    var referenceURL: URL {
+        referenceNode?.referenceURL ?? URL(string: "vobject://1")!
+    }
+    
+    func load() {
+        referenceNode?.load()
+    }
+    
+    func unload() {
+        referenceNode?.unload()
+    }
+    
+    init?(url: URL) {
+        guard let rn = SCNReferenceNode(url: url)
+        else { return nil }
+        modelName = rn.referenceURL.lastPathComponent
+                .replacingOccurrences(of: ".scn", with: "")
+
+        super.init()
+        self.addChildNode(rn)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override init() {
+        modelName = String(describing: Self.self)
+        super.init()
+    }
+
+    init(name: String? = nil) {
+        modelName = name ?? String(describing: Self.self)
+        super.init()
+    }
+    
+    var modelName: String
+    // jmj END
+
     // jmj
     var selection_mark: SCNNode?
     
@@ -18,8 +61,8 @@ class VirtualObject: SCNReferenceNode {
         get { selection_mark != nil }
         set {
             if newValue {
-                let radius = CGFloat(self.boundingSphere.radius)
-                let ring = SCNNode.tube(innerRadius: radius, outerRadius: radius + 0.01, height: 0.02, content: UIColor.red.withAlphaComponent(0.8))
+                let radius = CGFloat(self.boundingBox.max.z)
+                let ring = VirtualObject.tube(innerRadius: radius, outerRadius: radius + 0.01, height: 0.02, content: UIColor.red.withAlphaComponent(0.8))
                 selection_mark = ring
                 self.addChildNode(ring)
             } else {
@@ -29,19 +72,29 @@ class VirtualObject: SCNReferenceNode {
         }
     }
     /// The model name derived from the `referenceURL`.
-    var modelName: String {
-        return referenceURL.lastPathComponent.replacingOccurrences(of: ".scn", with: "")
-    }
+//    var modelName: String {
+//        return referenceURL.lastPathComponent.replacingOccurrences(of: ".scn", with: "")
+//    }
     
     /// The alignments that are allowed for a virtual object.
     var allowedAlignment: ARRaycastQuery.TargetAlignment {
-        if modelName == "sticky note" {
+        switch modelName {
+        case "sticky note":
             return .any
-        } else if modelName == "painting" {
+        case "":
+            return .any
+        case "painting":
             return .vertical
-        } else {
+        default:
             return .horizontal
         }
+//        if modelName == "sticky note" {
+//            return .any
+//        } else if modelName == "painting" {
+//            return .vertical
+//        } else {
+//            return .horizontal
+//        }
     }
     
     /// Rotates the first child node of a virtual object.
@@ -49,10 +102,10 @@ class VirtualObject: SCNReferenceNode {
     /// local y rather than world y.
     var objectRotation: Float {
         get {
-            return childNodes.first!.eulerAngles.y
+            return childNodes.first?.eulerAngles.y ?? 0
         }
         set (newValue) {
-            childNodes.first!.eulerAngles.y = newValue
+            childNodes.first?.eulerAngles.y = newValue
         }
     }
     
@@ -89,13 +142,15 @@ extension VirtualObject {
 
         let fileEnumerator = FileManager().enumerator(at: modelsURL, includingPropertiesForKeys: [])!
 
-        return fileEnumerator.compactMap { element in
+        var nobs: [VirtualObject] = fileEnumerator.compactMap { element in
             let url = element as! URL
 
             guard url.pathExtension == "scn" && !url.path.contains("lighting") else { return nil }
 
             return VirtualObject(url: url)
         }
+        nobs.append(VirtualObject(name: "Steel Box", width: 0.2, height: 0.3, length: 0.5, content: UIColor.gray))
+        return nobs
     }()
     
     /// Returns a `VirtualObject` if one exists as an ancestor to the provided node.
