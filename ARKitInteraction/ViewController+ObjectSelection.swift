@@ -8,7 +8,7 @@ Methods on the main view controller for handling virtual object loading and move
 import UIKit
 import ARKit
 
-extension ViewController: VirtualObjectSelectionViewControllerDelegate {
+extension ARKViewController: VirtualObjectSelectionViewControllerDelegate {
     
     /** Adds the specified virtual object to the scene, placed at the world-space position
      estimated by a hit test from the center of the screen.

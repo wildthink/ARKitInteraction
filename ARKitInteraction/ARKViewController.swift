@@ -9,7 +9,7 @@ import ARKit
 import SceneKit
 import UIKit
 
-class ViewController: UIViewController {
+class ARKViewController: UIViewController {
     
     // MARK: IBOutlets
     

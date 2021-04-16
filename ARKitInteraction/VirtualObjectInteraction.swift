@@ -23,7 +23,7 @@ class VirtualObjectInteraction: NSObject, UIGestureRecognizerDelegate {
     let sceneView: VirtualObjectARView
     
     /// A reference to the view controller.
-    let viewController: ViewController
+    let viewController: ARKViewController
     
     /**
      The object that has been most recently intereacted with.
@@ -42,7 +42,7 @@ class VirtualObjectInteraction: NSObject, UIGestureRecognizerDelegate {
     /// The tracked screen position used to update the `trackedObject`'s position.
     private var currentTrackingPosition: CGPoint?
     
-    init(sceneView: VirtualObjectARView, viewController: ViewController) {
+    init(sceneView: VirtualObjectARView, viewController: ARKViewController) {
         self.sceneView = sceneView
         self.viewController = viewController
         super.init()

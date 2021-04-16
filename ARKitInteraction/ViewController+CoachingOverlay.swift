@@ -9,7 +9,7 @@ import UIKit
 import ARKit
 
 /// - Tag: CoachingOverlayViewDelegate
-extension ViewController: ARCoachingOverlayViewDelegate {
+extension ARKViewController: ARCoachingOverlayViewDelegate {
     
     /// - Tag: HideUI
     func coachingOverlayViewWillActivate(_ coachingOverlayView: ARCoachingOverlayView) {

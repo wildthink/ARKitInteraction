@@ -7,7 +7,7 @@ ARSCNViewDelegate interactions for `ViewController`.
 
 import ARKit
 
-extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
+extension ARKViewController: ARSCNViewDelegate, ARSessionDelegate {
     
     // MARK: - ARSCNViewDelegate
     

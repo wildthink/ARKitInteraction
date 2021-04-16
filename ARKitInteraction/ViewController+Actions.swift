@@ -8,7 +8,7 @@ UI Actions for the main view controller.
 import UIKit
 import SceneKit
 
-extension ViewController: UIGestureRecognizerDelegate {
+extension ARKViewController: UIGestureRecognizerDelegate {
     
     enum SegueIdentifier: String {
         case showObjects
@@ -56,7 +56,7 @@ extension ViewController: UIGestureRecognizerDelegate {
     }
 }
 
-extension ViewController: UIPopoverPresentationControllerDelegate {
+extension ARKViewController: UIPopoverPresentationControllerDelegate {
     
     // MARK: - UIPopoverPresentationControllerDelegate
 
