@@ -24,6 +24,33 @@ public extension SCNNode {
 
 }
 
+extension SCNVector3 {
+    func distance(to vector: SCNVector3) -> Float {
+        return simd_distance(simd_float3(self), simd_float3(vector))
+    }
+    
+    func midpoint (to other: SCNVector3) -> SCNVector3 {
+        return SCNVector3(x: (x + other.x)/2, y: (y + other.y)/2, z: (z + other.z)/2)
+    }
+
+}
+
+/*
+ Example:
+     let line = SCNGeometry.line(from: startPosition, to: endPosition)
+     let lineNode = SCNNode(geometry: line)
+     lineNode.position = SCNVector3Zero
+     sceneView.scene.rootNode.addChildNode(lineNode)
+ */
+public extension SCNGeometry {
+    class func line(from vector1: SCNVector3, to vector2: SCNVector3) -> SCNGeometry {
+        let indices: [Int32] = [0, 1]
+        let source = SCNGeometrySource(vertices: [vector1, vector2])
+        let element = SCNGeometryElement(indices: indices, primitiveType: .line)
+        return SCNGeometry(sources: [source], elements: [element])
+    }
+}
+
 class Connector: SCNNode {
     
     weak var source: SCNNode?
@@ -48,14 +75,20 @@ class Connector: SCNNode {
     }
     
     func layout(width: Float = 0.01, color: UIColor = .red) {
+        
+        guard let source = source, let sink = sink else { return }
+        self.geometry = SCNGeometry.line(from: source.position, to: sink.position)
+        position = SCNVector3Zero
+
         /*
         for c in children {
             removeChild(c)
         }
-        
+        */
+        /*
         guard let source = source, let sink = sink else { return }
-        let dist = source.distance(to: sink) // distance(src_p, sink_p)
-        let mid = source.halfway(to: sink)
+        let dist = source.position.distance(to: sink.position)
+        let mid = source.position.midpoint(to: sink.position)
         let box = Box(color: color, width: dist, height: width, depth: width)
         box.setPosition(mid, relativeTo: nil)
         
@@ -74,7 +107,6 @@ class Connector: SCNNode {
         }
         self.addChild(box)
 
-        self.generateCollisionShapes(recursive: true)
  */
     }
     

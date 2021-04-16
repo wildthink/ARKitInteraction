@@ -123,6 +123,13 @@ class VirtualObjectInteraction: NSObject, UIGestureRecognizerDelegate {
         gesture.rotation = 0
     }
     
+    /// Link two nodes - jmj
+    func linkObject(from a: VirtualObject, to b: VirtualObject) {
+        let con = Connector(from: a, to: b)
+        con.layout()
+        sceneView.scene.rootNode.addChildNode(con)
+    }
+    
     /// Handles the interaction when the user taps the screen.
     @objc
     func didTap(_ gesture: UITapGestureRecognizer) {
@@ -133,6 +140,11 @@ class VirtualObjectInteraction: NSObject, UIGestureRecognizerDelegate {
         selectedObject?.selected = false
         
         if let tappedObject = sceneView.virtualObject(at: touchLocation) {
+            
+            // jmj
+            if let prev = selectedObject {
+                linkObject(from: prev, to: tappedObject)
+            }
             
             // If an object exists at the tap location, select it.
             selectedObject = tappedObject

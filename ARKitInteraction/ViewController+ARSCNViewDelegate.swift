@@ -29,6 +29,15 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard anchor is ARPlaneAnchor else { return }
+        
+        //1. Check We Have A Valid ARObject Anchor
+//        guard let objectAnchor = anchor as? ARObjectAnchor else { return }
+
+        //2. Create A Bounding Box Around Our Object
+//        let scale = CGFloat(objectAnchor.referenceObject.scale.x)
+//        let boundingBoxNode = BlackMirrorzBoundingBox(points: objectAnchor.referenceObject.rawFeaturePoints.points, scale: scale)
+//        node.addChildNode(boundingBoxNode)
+
         DispatchQueue.main.async {
             self.statusViewController.cancelScheduledMessage(for: .planeEstimation)
             self.statusViewController.showMessage("SURFACE DETECTED")

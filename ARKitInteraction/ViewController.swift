@@ -56,6 +56,11 @@ class ViewController: UIViewController {
         return sceneView.session
     }
     
+    @IBAction
+    func linkObjects() {
+        print (#function)
+    }
+
     // MARK: - View Controller Life Cycle
     
     override func viewDidLoad() {

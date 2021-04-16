@@ -81,7 +81,7 @@ class VirtualObject: SCNNode {
         switch modelName {
         case "sticky note":
             return .any
-        case "":
+        case "steel box", "Steel Box":
             return .any
         case "painting":
             return .vertical
@@ -149,7 +149,7 @@ extension VirtualObject {
 
             return VirtualObject(url: url)
         }
-        nobs.append(VirtualObject(name: "Steel Box", width: 0.2, height: 0.3, length: 0.5, content: UIColor.gray))
+        nobs.append(VirtualObject(name: "Steel Box", width: 0.2, height: 0.5, length: 0.3, content: UIColor.gray))
         return nobs
     }()
     

@@ -47,13 +47,21 @@ extension VirtualObject {
         
         let beam = SCNNode()
         beam.name = Self.SelectionMarkerName
-        let geom = SCNBox(width: width, height: height, length: length, chamferRadius: 0.01)
+        let geom = SCNBox(width: width, height: height, length: length, chamferRadius: 0.001)
         let material = SCNMaterial(color: .lightGray, metalness: 0.2)
         geom.materials = [material]
         beam.geometry = geom
         self.init()
         modelName = name
         addChildNode(beam)
+        
+        // Add image - jmj test
+        // https://www.blackmirrorz.tech/index.php/arkittutorials/scngeometry/scnplane
+        guard let img = UIImage(named: "switchboard.jpg") else { return }
+        let plane = Plane(width: height, height: length, content: img, horizontal: false)
+        plane.simdPosition = [Float(width/2) + 0.1, 0, 0]
+//        plane.simdEulerAngles = [0, Float.pi * 2, 0]
+        beam.addChildNode(plane)
     }
 }
 
@@ -71,4 +79,99 @@ public extension SCNMaterial {
         self.init()
         self.diffuse.contents = contents
     }
+}
+
+
+public class Plane: SCNNode {
+    
+    /// Creates An SCNPlane With A Single Colour Or Image For It's Material
+    /// (Either A Colour Or UIImage Must Be Input)
+    /// - Parameters:
+    ///   - width: Optional CGFloat (Defaults To 60cm)
+    ///   - height: Optional CGFloat (Defaults To 30cm)
+    ///   - content: Any (UIColor Or UIImage)
+    ///   - doubleSided: Bool
+    ///   - horizontal: The Alignment Of The Plane
+    
+    public init(width: CGFloat, height: CGFloat, content: Any,
+         doubleSided: Bool = false, horizontal: Bool = true) {
+        
+        super.init()
+        
+        self.geometry = SCNPlane(width: width, height: height)
+        let material = SCNMaterial()
+        material.diffuse.contents = content
+        
+         self.geometry?.firstMaterial = material
+        
+        material.isDoubleSided = doubleSided
+      
+
+        if horizontal {
+            self.transform = SCNMatrix4MakeRotation((-Float.pi / 2), 1, 0, 0)
+        }
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) { fatalError("Plane Node Coder Not Implemented") }
+    
+}
+
+
+// https://stackoverflow.com/questions/51552293/show-bounding-box-while-detecting-object-using-arkit-2/51567573
+
+public class BlackMirrorzBoundingBox: SCNNode {
+
+    //-----------------------
+    // MARK: - Initialization
+    //-----------------------
+
+    /// Creates A WireFrame Bounding Box From The Data Retrieved From The ARReferenceObject
+    ///
+    /// - Parameters:
+    ///   - points: [float3]
+    ///   - scale: CGFloat
+    ///   - color: UIColor
+    public init(points: [SIMD3<Float>], scale: CGFloat, color: UIColor = .cyan) {
+        super.init()
+
+        var localMin = SIMD3<Float>(repeating: Float.greatestFiniteMagnitude)
+        var localMax = SIMD3<Float>(repeating: -Float.greatestFiniteMagnitude)
+
+        for point in points {
+            localMin = min(localMin, point)
+            localMax = max(localMax, point)
+        }
+
+        self.simdPosition += (localMax + localMin) / 2
+        let extent = localMax - localMin
+
+        let wireFrame = SCNNode()
+        let box = SCNBox(width: CGFloat(extent.x), height: CGFloat(extent.y), length: CGFloat(extent.z), chamferRadius: 0)
+        box.firstMaterial?.diffuse.contents = color
+        box.firstMaterial?.isDoubleSided = true
+        wireFrame.geometry = box
+        setupShaderOnGeometry(box)
+        self.addChildNode(wireFrame)
+    }
+
+    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) Has Not Been Implemented") }
+
+    //----------------
+    // MARK: - Shaders
+    //----------------
+
+    /// Sets A Shader To Render The Cube As A Wireframe
+    ///
+    /// - Parameter geometry: SCNBox
+    func setupShaderOnGeometry(_ geometry: SCNBox) {
+        guard let path = Bundle.main.path(forResource: "wireframe_shader", ofType: "metal", inDirectory: "art.scnassets"),
+            let shader = try? String(contentsOfFile: path, encoding: .utf8) else {
+
+                return
+        }
+
+        geometry.firstMaterial?.shaderModifiers = [.surface: shader]
+    }
+
 }
