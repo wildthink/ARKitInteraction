@@ -112,8 +112,11 @@ class ARKViewController: UIViewController {
     func resetTracking() {
         virtualObjectInteraction.selectedObject = nil
         
+//        sceneView.debugOptions.insert(.anc)
+        
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = [.horizontal, .vertical]
+
         if #available(iOS 12.0, *) {
             configuration.environmentTexturing = .automatic
         }

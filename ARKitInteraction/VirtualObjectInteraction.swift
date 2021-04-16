@@ -135,7 +135,7 @@ class VirtualObjectInteraction: NSObject, UIGestureRecognizerDelegate {
     func didTap(_ gesture: UITapGestureRecognizer) {
         let touchLocation = gesture.location(in: sceneView)
         
-        print (#function, touchLocation)
+//        print (#function, touchLocation)
 
         selectedObject?.selected = false
         

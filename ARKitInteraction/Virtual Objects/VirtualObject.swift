@@ -52,6 +52,11 @@ class VirtualObject: SCNNode {
     }
     
     var modelName: String
+    
+    var planeClassification: ARPlaneAnchor.Classification? {
+        return (anchor as? ARPlaneAnchor)?.classification
+    }
+    
     // jmj END
 
     // jmj
@@ -80,6 +85,17 @@ class VirtualObject: SCNNode {
     var allowedAlignment: ARRaycastQuery.TargetAlignment {
         switch modelName {
         case "sticky note":
+            return .any
+            
+        case _ where modelName.hasPrefix("Wall"):
+            return .vertical
+
+        case _ where modelName.hasPrefix("Floor"):
+            return .horizontal
+
+        case _ where modelName.hasSuffix("Box"):
+            return .any
+        case _ where modelName.hasSuffix("box"):
             return .any
         case "steel box", "Steel Box":
             return .any
@@ -149,8 +165,19 @@ extension VirtualObject {
 
             return VirtualObject(url: url)
         }
-        nobs.append(VirtualObject(name: "Steel Box", width: 0.2, height: 0.5, length: 0.3, content: UIColor.gray))
-        return nobs
+        
+//        nobs.append(VirtualObject(name: "Steel Box", image: "switchboard.jpg",
+//                                  width: 0.3, height: 0.5, depth: 0.2,
+//                                  content: UIColor.gray))
+        nobs.append(VirtualObject(name: "Wall Box",
+                                  image: "switchboard.jpg", facing: .top,
+                                  width: 0.3, height: 0.2, depth: 0.5,
+                                  content: UIColor.gray))
+        nobs.append(VirtualObject(name: "Floor Box",
+                                  image: "switchboard.jpg", facing: .front,
+                                  width: 0.3, height: 0.5, depth: 0.2,
+                                  content: UIColor.gray))
+      return nobs
     }()
     
     /// Returns a `VirtualObject` if one exists as an ancestor to the provided node.
@@ -163,5 +190,13 @@ extension VirtualObject {
         
         // Recurse up to check if the parent is a `VirtualObject`.
         return existingObjectContainingNode(parent)
+    }
+}
+
+//import ARKit
+
+extension ARPlaneAnchor.Alignment: CustomStringConvertible {
+    public var description: String {
+        self == .horizontal ? "horizontal" : "vertical"
     }
 }

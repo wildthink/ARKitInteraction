@@ -126,24 +126,8 @@ extension ARKViewController: VirtualObjectSelectionViewControllerDelegate {
     
     // jmj
     func annotate(node: VirtualObject) {
-//        let mesh = MeshResource.generateText(
-//                    "RealityKit",
-//                    extrusionDepth: 0.1,
-//                    font: .systemFont(ofSize: 2),
-//                    containerFrame: .zero,
-//                    alignment: .left,
-//                    lineBreakMode: .byTruncatingTail)
-//
-//                let material = SimpleMaterial(color: .red, isMetallic: false)
-//                let entity = ModelEntity(mesh: mesh, materials: [material])
-//                entity.scale = SIMD3<Float>(0.03, 0.03, 0.1)
-//
-        let radius = CGFloat(node.boundingSphere.radius)
-        let entity = SCNNode.tube(innerRadius: radius, outerRadius: radius + 0.2, height: 0.01, content: UIColor.red.withAlphaComponent(0.5))
-//        entity.position = SCNVector3Make(1, 1, 1);
-//        node.addChildNode(entity)
-//        node.insertChildNode(entity, at: 0)
-//        entity.setPosition(SIMD3<Float>(0, 0.05, 0), relativeTo: node)
+//        let radius = CGFloat(node.boundingSphere.radius)
+//        let entity = SCNNode.tube(innerRadius: radius, outerRadius: radius + 0.2, height: 0.01, content: UIColor.red.withAlphaComponent(0.5))
     }
     
     func material(color: UIColor) -> SCNMaterial {

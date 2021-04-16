@@ -18,7 +18,7 @@ extension ARKViewController: UIGestureRecognizerDelegate {
     
     /// Displays the `VirtualObjectSelectionViewController` from the `addObjectButton` or in response to a tap gesture in the `sceneView`.
     @IBAction func showVirtualObjectSelectionViewController() {
-        print (#function)
+//        print (#function)
         // Ensure adding objects is an available action and we are not loading another object (to avoid concurrent modifications of the scene).
         guard !addObjectButton.isHidden && !virtualObjectLoader.isLoading else { return }
         

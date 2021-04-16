@@ -9,6 +9,9 @@
 import UIKit
 import SceneKit
 
+public enum CubeFace { case top, bottom, left, right, front, back }
+
+
 public extension SCNNode {
     
     func visit<N: SCNNode> (type: N.Type, call: ((N)->Void)) {

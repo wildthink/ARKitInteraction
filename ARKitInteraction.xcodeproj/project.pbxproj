@@ -18,6 +18,7 @@
 		3929C49F1E89EE4400E00B60 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3929C49E1E89EE4400E00B60 /* Models.scnassets */; };
 		39C0B95A1E9C6B1F003FCA0C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C0B9581E9C6B1F003FCA0C /* Utilities.swift */; };
 		39D8DC1B1E8ADAE600386B05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D8DC1A1E8ADAE600386B05 /* LaunchScreen.storyboard */; };
+		961102132629E57600623812 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961102122629E57600623812 /* ViewController.swift */; };
 		9679BE6F260B968F009F0E89 /* ARExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9679BE6E260B968F009F0E89 /* ARExtensions.swift */; };
 		9679BE72260BD182009F0E89 /* ARVideoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9679BE71260BD182009F0E89 /* ARVideoKit */; };
 		9679BE95260CE9DF009F0E89 /* ShapeNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9679BE94260CE9DF009F0E89 /* ShapeNodes.swift */; };
@@ -50,6 +51,8 @@
 		3929C49E1E89EE4400E00B60 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
 		39C0B9581E9C6B1F003FCA0C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		39D8DC1A1E8ADAE600386B05 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		961102112629E4C400623812 /* ARKStart */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ARKStart; path = ../../Development/ARKStart; sourceTree = "<group>"; };
+		961102122629E57600623812 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9679BE6E260B968F009F0E89 /* ARExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARExtensions.swift; sourceTree = "<group>"; };
 		9679BE94260CE9DF009F0E89 /* ShapeNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeNodes.swift; sourceTree = "<group>"; };
 		96EDA36226289B0000BE1B5A /* switchboard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = switchboard.jpg; sourceTree = "<group>"; };
@@ -120,6 +123,7 @@
 		3929C47F1E89EC2C00E00B60 = {
 			isa = PBXGroup;
 			children = (
+				961102112629E4C400623812 /* ARKStart */,
 				11063F3B1EBE651B0033EE6D /* README.md */,
 				3929C48A1E89EC2C00E00B60 /* ARKitInteraction */,
 				3929C4891E89EC2C00E00B60 /* Products */,
@@ -139,9 +143,10 @@
 		3929C48A1E89EC2C00E00B60 /* ARKitInteraction */ = {
 			isa = PBXGroup;
 			children = (
+				3929C48B1E89EC2C00E00B60 /* AppDelegate.swift */,
+				961102122629E57600623812 /* ViewController.swift */,
 				9679BE6E260B968F009F0E89 /* ARExtensions.swift */,
 				9679BE94260CE9DF009F0E89 /* ShapeNodes.swift */,
-				3929C48B1E89EC2C00E00B60 /* AppDelegate.swift */,
 				3929C48D1E89EC2C00E00B60 /* ARKViewController.swift */,
 				C8C12A701F29277B00B011FE /* ViewController+ARSCNViewDelegate.swift */,
 				1488323E1EFC378A0043E0AB /* ViewController+Actions.swift */,
@@ -269,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C812D8681F47628300344E73 /* ThresholdPanGesture.swift in Sources */,
+				961102132629E57600623812 /* ViewController.swift in Sources */,
 				11BD822A1F09D750003F11C8 /* ViewController+ObjectSelection.swift in Sources */,
 				1488323F1EFC378A0043E0AB /* ViewController+Actions.swift in Sources */,
 				3929C48E1E89EC2C00E00B60 /* ARKViewController.swift in Sources */,

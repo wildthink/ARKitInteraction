@@ -43,24 +43,44 @@ public extension SCNNode {
 
 extension VirtualObject {
     
-    convenience init(name: String, width: CGFloat, height: CGFloat, length: CGFloat, content: Any) {
+    convenience init(name: String, image: String? = nil, facing: CubeFace = .front,
+                     width: CGFloat, height: CGFloat, depth: CGFloat, content: Any) {
         
         let beam = SCNNode()
         beam.name = Self.SelectionMarkerName
-        let geom = SCNBox(width: width, height: height, length: length, chamferRadius: 0.001)
-        let material = SCNMaterial(color: .lightGray, metalness: 0.2)
+        let geom = SCNBox(width: width, height: height, length: depth, chamferRadius: 0.001)
+        let material = SCNMaterial(color: .lightGray, metalness: 0.5)
+        material.transparency = 0.8
         geom.materials = [material]
         beam.geometry = geom
         self.init()
         modelName = name
         addChildNode(beam)
+                
+        guard let image = image,
+              let img = UIImage(named: image) else { return }
+        let plane: Plane
         
-        // Add image - jmj test
-        // https://www.blackmirrorz.tech/index.php/arkittutorials/scngeometry/scnplane
-        guard let img = UIImage(named: "switchboard.jpg") else { return }
-        let plane = Plane(width: height, height: length, content: img, horizontal: false)
-        plane.simdPosition = [Float(width/2) + 0.1, 0, 0]
-//        plane.simdEulerAngles = [0, Float.pi * 2, 0]
+        switch facing {
+        case .top:
+            plane = Plane(width: width, height: depth, content: img, horizontal: true)
+            plane.simdPosition = [0, Float(height/2) + 0.001, 0]
+        case .bottom:
+            plane = Plane(width: width, height: depth, content: img, horizontal: true)
+            plane.simdPosition = [0, -Float(height/2) + 0.001, 0]
+        case .left:
+            plane = Plane(width: depth, height: height, content: img, horizontal: false)
+            plane.simdPosition = [0, 0, Float(depth/2) + 0.001]
+        case .right:
+            plane = Plane(width: depth, height: height, content: img, horizontal: false)
+            plane.simdPosition = [0, 0, Float(depth/2) + 0.001]
+        case .front:
+            plane = Plane(width: width, height: height, content: img, horizontal: false)
+            plane.simdPosition = [0, 0, Float(depth/2) + 0.001]
+        case .back:
+            plane = Plane(width: width, height: height, content: img, horizontal: false)
+            plane.simdPosition = [0, 0, -Float(depth/2) + 0.001]
+        }
         beam.addChildNode(plane)
     }
 }
@@ -81,7 +101,7 @@ public extension SCNMaterial {
     }
 }
 
-
+// https://www.blackmirrorz.tech/index.php/arkittutorials/scngeometry/scnplane
 public class Plane: SCNNode {
     
     /// Creates An SCNPlane With A Single Colour Or Image For It's Material
