@@ -30,13 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        if let viewController = self.window?.rootViewController as? ARKViewController {
+        if let viewController = self.window?.rootViewController as? ViewController {
             viewController.blurView.isHidden = false
         }
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        if let viewController = self.window?.rootViewController as? ARKViewController {
+        if let viewController = self.window?.rootViewController as? ViewController {
             viewController.blurView.isHidden = true
         }
     }
