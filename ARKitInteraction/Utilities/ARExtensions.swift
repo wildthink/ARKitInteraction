@@ -80,42 +80,18 @@ class Connector: SCNNode {
     func layout(width: Float = 0.01, color: UIColor = .red) {
         
         guard let source = source, let sink = sink else { return }
-        self.geometry = SCNGeometry.line(from: source.position, to: sink.position)
-        position = SCNVector3Zero
+//        self.geometry = SCNGeometry.line(from: source.position, to: sink.position)
+//        position = SCNVector3Zero
 
-        /*
-        for c in children {
-            removeChild(c)
-        }
-        */
-        /*
-        guard let source = source, let sink = sink else { return }
-        let dist = source.position.distance(to: sink.position)
-        let mid = source.position.midpoint(to: sink.position)
-        let box = Box(color: color, width: dist, height: width, depth: width)
-        box.setPosition(mid, relativeTo: nil)
+        self.geometry = SCNGeometry.line(points: [
+            source.position,
+            sink.position
+        ], radius: 0.01).0
         
-        let p1 = source.transformMatrix(relativeTo: nil).columns.3
-        let p2 = sink.transformMatrix(relativeTo: nil).columns.3
+        let material = SCNMaterial(color: .yellow, metalness: 0.5)
+        self.geometry?.materials = [material]
 
-        if source.anchor?.anchoring.alignment == .horizontal {
-//        if alignment == .horizontal {
-            let pivot = Float((Double.pi/180)) +
-                getAngleRadians(x1: p1.x, y1: p1.z, x2: p2.x, y2: p2.z)
-            box.transform.rotation = simd_quatf(angle: -pivot, axis: [0, 1, 0])
-        } else {
-            let pivot = Float((Double.pi/180)) +
-                getAngleRadians(x1: p1.y, y1: p1.z, x2: p2.y, y2: p2.z)
-            box.transform.rotation = simd_quatf(angle: -pivot, axis: [0, 1, 0])
-        }
-        self.addChild(box)
-
- */
     }
-    
-//    required init() {
-//        fatalError("init() has not been implemented")
-//    }
 }
 
 //extension Connector: CustomStringConvertible {
@@ -125,34 +101,6 @@ class Connector: SCNNode {
 //        return "\(src)::\(snk)"
 //    }
 //}
-
-/* Reality Kit
-import RealityKit
-
-class CustomBox: Entity, HasModel, HasAnchoring, HasCollision {
-    
-    required init(color: UIColor) {
-        super.init()
-        self.components[ModelComponent] = ModelComponent(
-            mesh: .generateBox(size: 0.1),
-            materials: [SimpleMaterial(
-                color: color,
-                isMetallic: false)
-            ]
-        )
-    }
-    
-    convenience init(color: UIColor, position: SIMD3<Float>) {
-        self.init(color: color)
-        self.position = position
-    }
-    
-    required init() {
-        fatalError("init() has not been implemented")
-    }
-}
-*/
-
 
 public extension NSObject {
     var className: String {

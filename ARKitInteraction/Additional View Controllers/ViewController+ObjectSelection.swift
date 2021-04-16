@@ -26,7 +26,7 @@ extension ARKViewController: VirtualObjectSelectionViewControllerDelegate {
                                                                   withInitialResult: virtualObject.mostRecentInitialPlacementResult)
         
         virtualObject.raycast = trackedRaycast
-        virtualObjectInteraction.selectedObject = virtualObject
+        virtualObjectInteraction?.selectedObject = virtualObject
         virtualObject.isHidden = false
     }
     
@@ -47,7 +47,7 @@ extension ARKViewController: VirtualObjectSelectionViewControllerDelegate {
             return
         }
         
-        if virtualObject.allowedAlignment == .any && self.virtualObjectInteraction.trackedObject == virtualObject {
+        if virtualObject.allowedAlignment == .any && self.virtualObjectInteraction?.trackedObject == virtualObject {
             
             // If an object that's aligned to a surface is being dragged, then
             // smoothen its orientation to avoid visible jumps, and apply only the translation directly.
@@ -171,7 +171,7 @@ extension ARKViewController: VirtualObjectSelectionViewControllerDelegate {
             fatalError("Programmer error: Failed to lookup virtual object in scene.")
         }
         virtualObjectLoader.removeVirtualObject(at: objectIndex)
-        virtualObjectInteraction.selectedObject = nil
+        virtualObjectInteraction?.selectedObject = nil
         if let anchor = object.anchor {
             session.remove(anchor: anchor)
         }

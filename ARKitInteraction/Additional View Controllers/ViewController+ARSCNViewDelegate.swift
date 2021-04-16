@@ -24,6 +24,18 @@ extension ARKViewController: ARSCNViewDelegate, ARSessionDelegate {
             if self.objectsViewController?.viewIfLoaded?.window != nil {
                 self.objectsViewController?.updateObjectAvailability()
             }
+            
+            // jmj
+            var invalid = [Connector]()
+            self.sceneView.scene.rootNode.enumerateChildNodes { node, flag in
+                guard let con = node as? Connector else { return }
+                if !con.isValid {
+                    invalid.append(con)
+                } else {
+                    con.layout()
+                }
+                for c in invalid { c.removeFromParentNode() }
+            }
         }
     }
     

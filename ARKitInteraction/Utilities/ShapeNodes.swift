@@ -50,7 +50,7 @@ extension VirtualObject {
         beam.name = Self.SelectionMarkerName
         let geom = SCNBox(width: width, height: height, length: depth, chamferRadius: 0.001)
         let material = SCNMaterial(color: .lightGray, metalness: 0.5)
-        material.transparency = 0.8
+//        material.transparency = 0.8
         geom.materials = [material]
         beam.geometry = geom
         self.init()
@@ -190,7 +190,6 @@ public class BlackMirrorzBoundingBox: SCNNode {
 
                 return
         }
-
         geometry.firstMaterial?.shaderModifiers = [.surface: shader]
     }
 

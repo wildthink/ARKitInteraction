@@ -40,8 +40,9 @@ open class ARKViewController: UIViewController {
     // MARK: - ARKit Configuration Properties
     
     /// A type which manages gesture manipulation of virtual content in the scene.
-    lazy var virtualObjectInteraction = VirtualObjectInteraction(sceneView: sceneView, viewController: self)
-    
+//    lazy var virtualObjectInteraction = VirtualObjectInteraction(sceneView: sceneView, viewController: self) jmj
+    var virtualObjectInteraction: VirtualObjectInteraction?
+
     /// Coordinates the loading and unloading of reference nodes for virtual objects.
     let virtualObjectLoader = VirtualObjectLoader()
     
@@ -56,11 +57,19 @@ open class ARKViewController: UIViewController {
         return sceneView.session
     }
     
-    @IBAction
-    func linkObjects() {
-        print (#function)
+    open override func responds(to aSelector: Selector!) -> Bool {
+        (virtualObjectInteraction?.responds(to: aSelector) ?? false)
+            || super.responds(to: aSelector)
     }
-
+    
+    open override func forwardingTarget(for aSelector: Selector!) -> Any? {
+        if virtualObjectInteraction?.responds(to: aSelector) ?? false {
+            return virtualObjectInteraction
+        } else {
+            return super.forwardingTarget(for: aSelector)
+        }
+    }
+    
     // MARK: - View Controller Life Cycle
     
     open override func viewDidLoad() {
@@ -92,6 +101,8 @@ open class ARKViewController: UIViewController {
         // Prevent the screen from being dimmed to avoid interuppting the AR experience.
         UIApplication.shared.isIdleTimerDisabled = true
 
+        virtualObjectInteraction = VirtualObjectInteraction(sceneView: sceneView, viewController: self)
+
         // Start the `ARSession`.
         resetTracking()
     }
@@ -110,10 +121,9 @@ open class ARKViewController: UIViewController {
     
     /// Creates a new AR configuration to run on the `session`.
     func resetTracking() {
-        virtualObjectInteraction.selectedObject = nil
-        
-//        sceneView.debugOptions.insert(.anc)
-        
+//        virtualObjectInteraction?.selectedObject = nil
+        virtualObjectInteraction?.reset()
+
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = [.horizontal, .vertical]
 
@@ -128,13 +138,14 @@ open class ARKViewController: UIViewController {
     // MARK: - Focus Square
 
     func updateFocusSquare(isObjectVisible: Bool) {
-        if isObjectVisible || coachingOverlay.isActive {
+//        if isObjectVisible || coachingOverlay.isActive {
+        if coachingOverlay.isActive {
             focusSquare.hide()
         } else {
             focusSquare.unhide()
             statusViewController.scheduleMessage("TRY MOVING LEFT OR RIGHT", inSeconds: 5.0, messageType: .focusSquare)
         }
-        
+
         // Perform ray casting only when ARKit tracking is in a good state.
         if let camera = session.currentFrame?.camera, case .normal = camera.trackingState,
             let query = sceneView.getRaycastQuery(),

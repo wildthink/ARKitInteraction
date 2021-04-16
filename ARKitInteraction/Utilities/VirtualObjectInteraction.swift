@@ -12,9 +12,11 @@ Manages user interaction with virtual objects to enable one-finger tap, one- and
 
 import UIKit
 import ARKit
+import SCNLine
+
 
 /// - Tag: VirtualObjectInteraction
-open class VirtualObjectInteraction: NSObject, UIGestureRecognizerDelegate {
+open class VirtualObjectInteraction: UIResponder, UIGestureRecognizerDelegate {
     
     /// Developer setting to translate assuming the detected plane extends infinitely.
     let translateAssumingInfinitePlane = true
@@ -57,6 +59,10 @@ open class VirtualObjectInteraction: NSObject, UIGestureRecognizerDelegate {
         sceneView.addGestureRecognizer(tapGesture)
     }
     
+    public func reset() {
+        selectedObject = nil
+    }
+
     // - Tag: CreatePanGesture
     func createPanGestureRecognizer(_ sceneView: VirtualObjectARView) {
         let panGesture = ThresholdPanGesture(target: self, action: #selector(didPan(_:)))
@@ -124,31 +130,35 @@ open class VirtualObjectInteraction: NSObject, UIGestureRecognizerDelegate {
     }
     
     /// Link two nodes - jmj
+    @IBAction
+    func linkObjects() {
+
+        var nodes = [VirtualObject]()
+        self.sceneView.scene.rootNode.enumerateChildNodes { node, flag in
+            guard let nob = node as? VirtualObject, nob.selected else { return }
+            nodes.append(nob)
+        }
+        guard nodes.count >= 2 else { return }
+        linkObject(from: nodes[0], to: nodes[1])
+    }
+
     func linkObject(from a: VirtualObject, to b: VirtualObject) {
+        guard a != b else { return }
         let con = Connector(from: a, to: b)
         con.layout()
         sceneView.scene.rootNode.addChildNode(con)
-    }
+     }
     
     /// Handles the interaction when the user taps the screen.
     @objc
     func didTap(_ gesture: UITapGestureRecognizer) {
         let touchLocation = gesture.location(in: sceneView)
-        
-//        print (#function, touchLocation)
-
-        selectedObject?.selected = false
-        
+                
         if let tappedObject = sceneView.virtualObject(at: touchLocation) {
-            
-            // jmj
-            if let prev = selectedObject {
-                linkObject(from: prev, to: tappedObject)
-            }
-            
+                        
             // If an object exists at the tap location, select it.
-            selectedObject = tappedObject
-            selectedObject?.selected = true
+            tappedObject.selected.toggle()
+            selectedObject = tappedObject.selected ? tappedObject : nil
         } else if let object = selectedObject {
             
             // Otherwise, move the selected object to its new position at the tap location.
@@ -218,7 +228,7 @@ open class VirtualObjectInteraction: NSObject, UIGestureRecognizerDelegate {
 }
 
 /// Extends `UIGestureRecognizer` to provide the center point resulting from multiple touches.
-extension UIGestureRecognizer {
+public extension UIGestureRecognizer {
     func center(in view: UIView) -> CGPoint? {
         guard numberOfTouches > 0 else { return nil }
         
