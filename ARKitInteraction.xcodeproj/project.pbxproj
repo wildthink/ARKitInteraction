@@ -13,13 +13,6 @@
 		3929C49F1E89EE4400E00B60 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3929C49E1E89EE4400E00B60 /* Models.scnassets */; };
 		39D8DC1B1E8ADAE600386B05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D8DC1A1E8ADAE600386B05 /* LaunchScreen.storyboard */; };
 		961102132629E57600623812 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961102122629E57600623812 /* ViewController.swift */; };
-		961102262629FE4700623812 /* VirtualObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961102142629FE4500623812 /* VirtualObject.swift */; };
-		961102282629FE4700623812 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961102162629FE4600623812 /* Utilities.swift */; };
-		9611022A2629FE4700623812 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961102182629FE4600623812 /* StatusViewController.swift */; };
-		9611022D2629FE4700623812 /* FocusSquareSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9611021B2629FE4600623812 /* FocusSquareSegment.swift */; };
-		9611022F2629FE4700623812 /* FocusSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9611021D2629FE4600623812 /* FocusSquare.swift */; };
-		961102342629FE4700623812 /* VirtualObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961102222629FE4600623812 /* VirtualObjectLoader.swift */; };
-		961102362629FE4700623812 /* VirtualObjectSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961102242629FE4700623812 /* VirtualObjectSelection.swift */; };
 		9611023A2629FF3000623812 /* ThresholdPanGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961102392629FF3000623812 /* ThresholdPanGesture.swift */; };
 		9611023C2629FF8300623812 /* ARExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9611023B2629FF8300623812 /* ARExtensions.swift */; };
 		961102412629FFCA00623812 /* ViewController+CoachingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9611023D2629FFC900623812 /* ViewController+CoachingOverlay.swift */; };
@@ -30,9 +23,16 @@
 		96110247262A002200623812 /* ShapeNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96110246262A002200623812 /* ShapeNodes.swift */; };
 		9611024A262A005A00623812 /* VirtualObjectInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96110249262A005A00623812 /* VirtualObjectInteraction.swift */; };
 		9611024C262A008700623812 /* VirtualObjectARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9611024B262A006B00623812 /* VirtualObjectARView.swift */; };
+		9651C5B3262A8A70003AF0B2 /* VirtualObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9651C5B1262A8A70003AF0B2 /* VirtualObject.swift */; };
+		9651C5B4262A8A70003AF0B2 /* VirtualObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9651C5B2262A8A70003AF0B2 /* VirtualObjectLoader.swift */; };
+		9651C5B7262A8A8E003AF0B2 /* VirtualObjectSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9651C5B5262A8A8E003AF0B2 /* VirtualObjectSelection.swift */; };
+		9651C5B8262A8A8E003AF0B2 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9651C5B6262A8A8E003AF0B2 /* StatusViewController.swift */; };
+		9651C5BB262A8AEB003AF0B2 /* FocusSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9651C5B9262A8AEB003AF0B2 /* FocusSquare.swift */; };
+		9651C5BC262A8AEB003AF0B2 /* FocusSquareSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9651C5BA262A8AEB003AF0B2 /* FocusSquareSegment.swift */; };
+		9651C5BE262A8B11003AF0B2 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9651C5BD262A8B11003AF0B2 /* Utilities.swift */; };
+		9651C5C1262A8C32003AF0B2 /* SCNLine in Frameworks */ = {isa = PBXBuildFile; productRef = 9651C5C0262A8C32003AF0B2 /* SCNLine */; };
 		9679BE72260BD182009F0E89 /* ARVideoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9679BE71260BD182009F0E89 /* ARVideoKit */; };
 		96EDA36326289B0000BE1B5A /* switchboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96EDA36226289B0000BE1B5A /* switchboard.jpg */; };
-		96EDA3662628B75300BE1B5A /* Euclid in Frameworks */ = {isa = PBXBuildFile; productRef = 96EDA3652628B75300BE1B5A /* Euclid */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,13 +46,6 @@
 		3929C49E1E89EE4400E00B60 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
 		39D8DC1A1E8ADAE600386B05 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		961102122629E57600623812 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		961102142629FE4500623812 /* VirtualObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VirtualObject.swift; path = ../VirtualObject.swift; sourceTree = "<group>"; };
-		961102162629FE4600623812 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = ARKitInteraction/Utilities.swift; sourceTree = SOURCE_ROOT; };
-		961102182629FE4600623812 /* StatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusViewController.swift; path = ../StatusViewController.swift; sourceTree = "<group>"; };
-		9611021B2629FE4600623812 /* FocusSquareSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FocusSquareSegment.swift; path = ../FocusSquareSegment.swift; sourceTree = "<group>"; };
-		9611021D2629FE4600623812 /* FocusSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FocusSquare.swift; path = ../FocusSquare.swift; sourceTree = "<group>"; };
-		961102222629FE4600623812 /* VirtualObjectLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VirtualObjectLoader.swift; path = ../VirtualObjectLoader.swift; sourceTree = "<group>"; };
-		961102242629FE4700623812 /* VirtualObjectSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualObjectSelection.swift; sourceTree = "<group>"; };
 		961102382629FEE200623812 /* ARKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKViewController.swift; sourceTree = "<group>"; };
 		961102392629FF3000623812 /* ThresholdPanGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThresholdPanGesture.swift; sourceTree = "<group>"; };
 		9611023B2629FF8300623812 /* ARExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARExtensions.swift; sourceTree = "<group>"; };
@@ -63,6 +56,13 @@
 		96110246262A002200623812 /* ShapeNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeNodes.swift; sourceTree = "<group>"; };
 		96110249262A005A00623812 /* VirtualObjectInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualObjectInteraction.swift; sourceTree = "<group>"; };
 		9611024B262A006B00623812 /* VirtualObjectARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualObjectARView.swift; sourceTree = "<group>"; };
+		9651C5B1262A8A70003AF0B2 /* VirtualObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualObject.swift; sourceTree = "<group>"; };
+		9651C5B2262A8A70003AF0B2 /* VirtualObjectLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualObjectLoader.swift; sourceTree = "<group>"; };
+		9651C5B5262A8A8E003AF0B2 /* VirtualObjectSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualObjectSelection.swift; sourceTree = "<group>"; };
+		9651C5B6262A8A8E003AF0B2 /* StatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
+		9651C5B9262A8AEB003AF0B2 /* FocusSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusSquare.swift; sourceTree = "<group>"; };
+		9651C5BA262A8AEB003AF0B2 /* FocusSquareSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusSquareSegment.swift; sourceTree = "<group>"; };
+		9651C5BD262A8B11003AF0B2 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		96EDA36226289B0000BE1B5A /* switchboard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = switchboard.jpg; sourceTree = "<group>"; };
 		E1ECC1F4706C62A3B4DE0541 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,8 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96EDA3662628B75300BE1B5A /* Euclid in Frameworks */,
 				9679BE72260BD182009F0E89 /* ARVideoKit in Frameworks */,
+				9651C5C1262A8C32003AF0B2 /* SCNLine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,8 +83,8 @@
 		113B64D01ECA81CA0071CBD1 /* Focus Square */ = {
 			isa = PBXGroup;
 			children = (
-				9611021D2629FE4600623812 /* FocusSquare.swift */,
-				9611021B2629FE4600623812 /* FocusSquareSegment.swift */,
+				9651C5B9262A8AEB003AF0B2 /* FocusSquare.swift */,
+				9651C5BA262A8AEB003AF0B2 /* FocusSquareSegment.swift */,
 			);
 			path = "Focus Square";
 			sourceTree = "<group>";
@@ -92,11 +92,11 @@
 		1488324A1EFC3E9C0043E0AB /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				9651C5BD262A8B11003AF0B2 /* Utilities.swift */,
 				96110249262A005A00623812 /* VirtualObjectInteraction.swift */,
 				96110246262A002200623812 /* ShapeNodes.swift */,
 				9611023B2629FF8300623812 /* ARExtensions.swift */,
 				961102392629FF3000623812 /* ThresholdPanGesture.swift */,
-				961102162629FE4600623812 /* Utilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -104,12 +104,13 @@
 		1488324B1EFC3EBF0043E0AB /* Additional View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9651C5B6262A8A8E003AF0B2 /* StatusViewController.swift */,
+				9651C5B5262A8A8E003AF0B2 /* VirtualObjectSelection.swift */,
 				961102382629FEE200623812 /* ARKViewController.swift */,
 				9611023F2629FFC900623812 /* ViewController+Actions.swift */,
 				9611023E2629FFC900623812 /* ViewController+ARSCNViewDelegate.swift */,
 				9611023D2629FFC900623812 /* ViewController+CoachingOverlay.swift */,
 				961102402629FFCA00623812 /* ViewController+ObjectSelection.swift */,
-				961102182629FE4600623812 /* StatusViewController.swift */,
 			);
 			path = "Additional View Controllers";
 			sourceTree = "<group>";
@@ -151,7 +152,6 @@
 			children = (
 				3929C48B1E89EC2C00E00B60 /* AppDelegate.swift */,
 				961102122629E57600623812 /* ViewController.swift */,
-				961102242629FE4700623812 /* VirtualObjectSelection.swift */,
 				96110248262A003C00623812 /* ARKStart Views */,
 				C40DF57B1EC2330700D9D59E /* Virtual Objects */,
 				113B64D01ECA81CA0071CBD1 /* Focus Square */,
@@ -189,8 +189,8 @@
 		C40DF57B1EC2330700D9D59E /* Virtual Objects */ = {
 			isa = PBXGroup;
 			children = (
-				961102142629FE4500623812 /* VirtualObject.swift */,
-				961102222629FE4600623812 /* VirtualObjectLoader.swift */,
+				9651C5B1262A8A70003AF0B2 /* VirtualObject.swift */,
+				9651C5B2262A8A70003AF0B2 /* VirtualObjectLoader.swift */,
 			);
 			path = "Virtual Objects";
 			sourceTree = "<group>";
@@ -213,7 +213,7 @@
 			name = ARKitInteraction;
 			packageProductDependencies = (
 				9679BE71260BD182009F0E89 /* ARVideoKit */,
-				96EDA3652628B75300BE1B5A /* Euclid */,
+				9651C5C0262A8C32003AF0B2 /* SCNLine */,
 			);
 			productName = ARKitInteraction;
 			productReference = 3929C4881E89EC2C00E00B60 /* ARKitInteraction.app */;
@@ -248,7 +248,7 @@
 			mainGroup = 3929C47F1E89EC2C00E00B60;
 			packageReferences = (
 				9679BE70260BD182009F0E89 /* XCRemoteSwiftPackageReference "ARVideoKit" */,
-				96EDA3642628B75300BE1B5A /* XCRemoteSwiftPackageReference "Euclid" */,
+				9651C5BF262A8C32003AF0B2 /* XCRemoteSwiftPackageReference "SceneKit-SCNLine" */,
 			);
 			productRefGroup = 3929C4891E89EC2C00E00B60 /* Products */;
 			projectDirPath = "";
@@ -280,24 +280,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				9611023C2629FF8300623812 /* ARExtensions.swift in Sources */,
+				9651C5BC262A8AEB003AF0B2 /* FocusSquareSegment.swift in Sources */,
 				96110247262A002200623812 /* ShapeNodes.swift in Sources */,
-				9611022A2629FE4700623812 /* StatusViewController.swift in Sources */,
 				9611024A262A005A00623812 /* VirtualObjectInteraction.swift in Sources */,
+				9651C5B8262A8A8E003AF0B2 /* StatusViewController.swift in Sources */,
 				961102452629FFF700623812 /* ARKViewController.swift in Sources */,
-				9611022F2629FE4700623812 /* FocusSquare.swift in Sources */,
 				961102132629E57600623812 /* ViewController.swift in Sources */,
-				961102342629FE4700623812 /* VirtualObjectLoader.swift in Sources */,
 				961102412629FFCA00623812 /* ViewController+CoachingOverlay.swift in Sources */,
 				3929C48C1E89EC2C00E00B60 /* AppDelegate.swift in Sources */,
-				961102362629FE4700623812 /* VirtualObjectSelection.swift in Sources */,
 				961102432629FFCA00623812 /* ViewController+ARSCNViewDelegate.swift in Sources */,
 				9611023A2629FF3000623812 /* ThresholdPanGesture.swift in Sources */,
-				961102282629FE4700623812 /* Utilities.swift in Sources */,
+				9651C5B7262A8A8E003AF0B2 /* VirtualObjectSelection.swift in Sources */,
 				961102442629FFCA00623812 /* ViewController+Actions.swift in Sources */,
-				9611022D2629FE4700623812 /* FocusSquareSegment.swift in Sources */,
+				9651C5BE262A8B11003AF0B2 /* Utilities.swift in Sources */,
+				9651C5BB262A8AEB003AF0B2 /* FocusSquare.swift in Sources */,
+				9651C5B3262A8A70003AF0B2 /* VirtualObject.swift in Sources */,
+				9651C5B4262A8A70003AF0B2 /* VirtualObjectLoader.swift in Sources */,
 				9611024C262A008700623812 /* VirtualObjectARView.swift in Sources */,
 				961102422629FFCA00623812 /* ViewController+ObjectSelection.swift in Sources */,
-				961102262629FE4700623812 /* VirtualObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +506,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9651C5BF262A8C32003AF0B2 /* XCRemoteSwiftPackageReference "SceneKit-SCNLine" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maxxfrazer/SceneKit-SCNLine";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		9679BE70260BD182009F0E89 /* XCRemoteSwiftPackageReference "ARVideoKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AFathi/ARVideoKit";
@@ -514,26 +522,18 @@
 				kind = branch;
 			};
 		};
-		96EDA3642628B75300BE1B5A /* XCRemoteSwiftPackageReference "Euclid" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/nicklockwood/Euclid.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9651C5C0262A8C32003AF0B2 /* SCNLine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9651C5BF262A8C32003AF0B2 /* XCRemoteSwiftPackageReference "SceneKit-SCNLine" */;
+			productName = SCNLine;
+		};
 		9679BE71260BD182009F0E89 /* ARVideoKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9679BE70260BD182009F0E89 /* XCRemoteSwiftPackageReference "ARVideoKit" */;
 			productName = ARVideoKit;
-		};
-		96EDA3652628B75300BE1B5A /* Euclid */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 96EDA3642628B75300BE1B5A /* XCRemoteSwiftPackageReference "Euclid" */;
-			productName = Euclid;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
