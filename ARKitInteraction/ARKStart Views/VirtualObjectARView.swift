@@ -17,9 +17,11 @@ open class VirtualObjectARView: ARSCNView {
         let hitTestOptions: [SCNHitTestOption: Any] = [.boundingBoxOnly: true]
         let hitTestResults = hitTest(point, options: hitTestOptions)
         
-        return hitTestResults.lazy.compactMap { result in
-            return VirtualObject.existingObjectContainingNode(result.node)
-        }.first
+        return hitTestResults.lazy.compactMap { $0.node.virtualObject }.first
+
+//        return hitTestResults.lazy.compactMap { result in
+//            return VirtualObject.existingObjectContainingNode(result.node)
+//        }.first
     }
     
     // - MARK: Object anchors

@@ -65,14 +65,16 @@ class VirtualObject: SCNNode {
     var selected: Bool {
         get { selection_mark != nil }
         set {
+            selection_mark?.removeFromParentNode()
+            selection_mark = nil
             if newValue {
                 let radius = CGFloat(self.boundingBox.max.z)
-                let ring = VirtualObject.tube(innerRadius: radius, outerRadius: radius + 0.01, height: 0.02, content: UIColor.red.withAlphaComponent(0.8))
+                let ring = SCNNode.tube(innerRadius: radius, outerRadius: radius + 0.01, height: 0.02, content: UIColor.red.withAlphaComponent(0.8))
                 selection_mark = ring
                 self.addChildNode(ring)
-            } else {
-                selection_mark?.removeFromParentNode()
-                selection_mark = nil
+//            } else {
+//                selection_mark?.removeFromParentNode()
+//                selection_mark = nil
             }
         }
     }
@@ -190,6 +192,12 @@ extension VirtualObject {
         
         // Recurse up to check if the parent is a `VirtualObject`.
         return existingObjectContainingNode(parent)
+    }
+}
+
+extension SCNNode {
+    var virtualObject: VirtualObject? {
+        (self as? VirtualObject) ?? self.parent?.virtualObject
     }
 }
 
